@@ -37,4 +37,39 @@
   }
 }
 
-
+/*custom css */
+.graph-layout{
+  text-align: center;
+}
+.logs-spacing{
+  padding-left: 20%;
+  padding-right:20%;
+}
+.logs-h1{
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.nav-tabs{
+  justify-content: center;
+}
+.selected-tab-heading{
+  text-align: center;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+.logs-layout{
+  padding-bottom: 80px;;
+}
+.list-group-item{
+  padding-top: 16px !important;
+}
+text{
+  fill: transparent !important;
+}
+/*
+//plotly grid lines
+path{
+  stroke: transparent !important;
+}
+*/

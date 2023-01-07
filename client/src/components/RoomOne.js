@@ -30,7 +30,7 @@ class RoomOne extends React.Component {
 
         ]}
 
-        layout={{ width: 330, height: 300, title: "Room Three" }}
+        layout={{ width: 330, height: 300, title: "Room One" }}
 
       />
       
