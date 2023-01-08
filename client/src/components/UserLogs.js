@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 
+
+
 function UserLogs() {
+
+ 
   return (
     <div>
         <h1 className='selected-tab-heading'>Phone</h1>
