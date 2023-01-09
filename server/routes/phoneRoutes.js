@@ -1,13 +1,17 @@
-const router = require('express').Router();
-const Phone = require('../models/Phone');
+const express = require("express");
+const router = express.Router();
+const Phone = require('../models/phoneModel');
 
 
-router.get("/getallphones", async(req, res) => {
-    try {
-        const phones = await Phone.find({})
-        res.send(phones)
+router.get("/getallphones", async (req, res) => {
+    try{
+        const phone = await Phone.find();
+        res.json(phone)
+        console.log('phoneRoute')
     } catch (error) {
-        return res.status(400).json({ message: error });
+        console.log('phone route error')
+        return res.status(400).json({ message: error })
+        
     }
 })
 

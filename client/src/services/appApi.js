@@ -6,8 +6,8 @@ const appApi = createApi({
         baseUrl: 'http://localhost:5001'
     }),
     endpoints: (builder) => ({
-        //get phones
-        getPhones: builder.mutation({
+        //get phone
+        getPhone: builder.mutation({
             query: (phone) => ({
                 
             }),
@@ -15,6 +15,6 @@ const appApi = createApi({
     }),
 });
 
-export const { getPhones } = appApi;
+export const { getPhone } = appApi;
 
 export default appApi;

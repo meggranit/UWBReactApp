@@ -1,31 +1,24 @@
 const express = require('express');
+const db = require('./connection')
 const app = express();
-const phoneRoutes = require('./routes/phoneRoutes')
+const path = require("path");
 
-
-const rooms = ['all', 'one', 'two', 'three', 'four', 'five'];
-const cors = require('cors');
-
-app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(cors());
+const phoneRoutes = require('./routes/phoneRoutes')
+const roomOneRoutes = require('./routes/roomOneRoutes')
+app.use("/phone/", phoneRoutes);
+app.use("/roomone/", roomOneRoutes)
+app.get("/", (req, res) => {
+    res.send("Server working on port " + port);
+});
 
-app.use('/api/phones/', phoneRoutes )
-require('./connection')
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+
+
+
 
 const server = require('http').createServer(app);
 const PORT = 5001;
-const io = require('socket.io')(server, {
-    cors: {
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST']
-    }
-})
-
-app.get('/phones', (req, res)=> {
-    res.json(phones)
-})
-
 
 
 server.listen(PORT, ()=> {

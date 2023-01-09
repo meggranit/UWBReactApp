@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import Badge from 'react-bootstrap/Badge';
+import React, { useEffect, useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
-
 
 
 function UserLogs() {
 
- 
+
   return (
+    
     <div>
         <h1 className='selected-tab-heading'>Phone</h1>
+       <p></p>
     <ListGroup as="ol" >
       <ListGroup.Item
         as="li"
