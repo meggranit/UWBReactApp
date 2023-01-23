@@ -1,18 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const Phone = require('../models/phoneModel');
+const { getPhones } = require('../controllers/phonesController')
 
+router.get('/', getPhones)
 
-router.get("/getallphones", async (req, res) => {
-    try{
-        const phone = await Phone.find();
-        res.json(phone)
-        console.log('phoneRoute')
-    } catch (error) {
-        console.log('phone route error')
-        return res.status(400).json({ message: error })
-        
-    }
-})
 
 module.exports = router

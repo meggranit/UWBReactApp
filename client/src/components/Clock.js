@@ -2,8 +2,8 @@ import React from "react";
 import './Clock.css';
 
 class Clock extends React.Component {
-    constructor(props) {
-      super(props);
+    constructor(phoneData) {
+      super(phoneData);
       this.state = {
         time: new Date().toLocaleString()
       };

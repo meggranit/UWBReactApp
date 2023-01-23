@@ -1,5 +1,4 @@
 import React from 'react'
-import UserLogs from '../components/UserLogs';
 import { useState } from 'react';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -8,6 +7,7 @@ import RoomTwoLogs from '../components/RoomTwoLogs';
 import RoomThreeLogs from '../components/RoomThreeLogs';
 import RoomFourLogs from '../components/RoomFourLogs';
 import RoomFiveLogs from '../components/RoomFiveLogs';
+import PhoneLogs from '../components/PhoneLogs';
 
 
 function Logs() {
@@ -26,7 +26,7 @@ function Logs() {
     >
       <Tab eventKey="phone" title="Phone">
       <div className='logs-spacing'>
-                <UserLogs />
+                <PhoneLogs />
             </div>
       </Tab>
       <Tab eventKey="roomone" title="Room One">
