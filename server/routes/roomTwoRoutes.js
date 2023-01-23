@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { getRoomOne } = require('../controllers/roomOneController')
+const { getRoomTwo } = require('../controllers/roomTwoController')
 
-router.get('/', getRoomOne)
+router.get('/', getRoomTwo)
 
 
 module.exports = router

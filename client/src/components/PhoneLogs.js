@@ -30,7 +30,7 @@ function PhoneLogs() {
             className="d-flex justify-content-between align-items-start"
           >
             <div className="ms-2 me-auto">
-              <p>Device ID: {phone._id}</p>
+              <p>Device ID: {phone.deviceID}</p>
               <p>Room ID: {phone.roomID}</p>
             </div>
             <div>
