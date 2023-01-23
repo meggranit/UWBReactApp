@@ -1,0 +1,11 @@
+.navbar-brand{
+    color: #fff !important;
+  }
+  .navbar-expand-lg{
+    background-color: #69B3E7 !important;
+    --bs-bg-opacity: 1;
+  }
+  a.nav-link{
+    color: #fff !important;
+  }
+  

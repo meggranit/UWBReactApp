@@ -4,10 +4,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { LinkContainer } from 'react-router-bootstrap';
+import '../nav.css'
 
 function Navigation() {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar  expand="lg">
       <Container>
         <Navbar.Brand href="/">UWB Dashboard</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

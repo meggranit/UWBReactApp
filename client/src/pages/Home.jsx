@@ -9,23 +9,18 @@ import Clock from '../components/Clock';
 import Stack from 'react-bootstrap/Stack';
 import PhoneList from "../components/Phones";
 import { getAllPhones } from "../actions/phoneActions";
+import RoomCount from "../components/RoomCount";
 
 
 export default function Home() {
     
     return (
-        <div>
-        <div>
+        <div className="home-layout">
+            <RoomCount />
+            <div>
         <Clock></Clock>
-      </div>
-      <div className='graph-layout'>
-          <RoomOne></RoomOne>
-          <RoomTwo></RoomTwo>
-          <RoomThree></RoomThree>
-          <RoomFour></RoomFour>
-          <RoomFive></RoomFive>
-          </div>
-          </div>
+        </div>
+        </div>
     )
 }
 

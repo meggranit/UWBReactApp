@@ -59,7 +59,8 @@
   padding-top: 20px;
 }
 .logs-layout{
-  padding-bottom: 80px;;
+  padding-bottom: 80px;
+  margin-top: 30px;
 }
 .list-group-item{
   padding-top: 16px !important;
@@ -73,3 +74,70 @@ path{
   stroke: transparent !important;
 }
 */
+
+
+.rooms-main-div{
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  border: solid #C8C9C7;
+}
+.rooms-row{
+  display:flex;
+  flex-direction: row;
+}
+.align-rooms{
+  display: flex;
+  justify-content: center;
+}
+.rooms-top-row{
+
+}
+.rooms-bottom-row{
+
+}
+.room{
+  height: 150px;
+  border: solid #C8C9C7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.room-top{
+  width: 180px;
+    
+}
+.room-bottom{
+  width: 270px;
+}
+.room-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.room-num{
+  margin-bottom: 0px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.room-count{
+  margin-bottom: 0px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button.nav-link{
+  color: #69B3E7 !important;
+}
+p{
+  margin-bottom: 5px;
+}
+.home-layout{
+  margin-top: 80px;
+}
+@media only screen and (max-width: 600px) {
+  .room-bottom{
+    width: 180px;
+  }
+  .rooms-row{
+    flex-direction: column;
+  }
+}

@@ -10,13 +10,14 @@ import RoomFiveLogs from '../components/RoomFiveLogs';
 import PhoneLogs from '../components/PhoneLogs';
 
 
+
 function Logs() {
     const [key, setKey] = useState('phone');
 
     return (
         <div className='logs-layout'>
         <div>
-            <h1 className='logs-h1'>Logs</h1>
+           
 <div>
 <Tabs
       id="controlled-tab-example"
