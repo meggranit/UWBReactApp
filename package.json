@@ -1,0 +1,22 @@
+{
+  "name": "uwbreactapp",
+  "version": "1.0.0",
+  "description": "MERN stack application",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server/ && node server.js",
+    "server": "cd server/ && nodemon server.js",
+    "client": "cd client/ && npm start",
+    "dev": "concurrently  \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meggranit/UWBReactApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meggranit/UWBReactApp/issues"
+  },
+  "homepage": "https://github.com/meggranit/UWBReactApp#readme"
+}
