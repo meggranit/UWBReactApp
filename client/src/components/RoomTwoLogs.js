@@ -5,6 +5,7 @@ import { getAllRoomTwo } from '../actions/roomTwoActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
+import Pusher from 'pusher-js'
 
 function RoomTwoLogs() {
 
@@ -13,6 +14,16 @@ function RoomTwoLogs() {
     const { error, loading, roomtwo } = roomtwostate
     useEffect(() => {
         dispatch(getAllRoomTwo())
+        const pusher = new Pusher('df84289eebfca65c0b86', {
+          cluster: 'us2'
+        });
+        const channel2 = pusher.subscribe('channel_room2');
+        channel2.bind('event-room2', function(data) {
+          alert(JSON.stringify(data));
+        });
+        return (() => {
+          pusher.unsubscribe('channel_room2')
+        })
     }, [])
 
   return (

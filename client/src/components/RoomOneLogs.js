@@ -5,6 +5,7 @@ import { getAllRoomOne } from '../actions/roomOneActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
+import Pusher from 'pusher-js'
 
 function RoomOneLogs() {
 
@@ -13,6 +14,16 @@ function RoomOneLogs() {
     const { error, loading, roomone } = roomonestate
     useEffect(() => {
         dispatch(getAllRoomOne())
+        const pusher = new Pusher('df84289eebfca65c0b86', {
+          cluster: 'us2'
+        });
+        const channel1 = pusher.subscribe('channel_room1');
+        channel1.bind('event-room1', function(data) {
+          alert(JSON.stringify(data));
+        });
+        return (() => {
+          pusher.unsubscribe('channel_room1')
+        })
     }, [])
 
   return (

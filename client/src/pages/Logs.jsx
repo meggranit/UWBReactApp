@@ -45,7 +45,8 @@ function Logs() {
                 <RoomThreeLogs />
             </div>
       </Tab>
-      <Tab eventKey="roomfour" title="Room Four">
+      {/*
+    <Tab eventKey="roomfour" title="Room Four">
       <div className='logs-spacing'>
                 <RoomFourLogs />
             </div>
@@ -55,6 +56,9 @@ function Logs() {
                 <RoomFiveLogs />
             </div>
       </Tab>
+
+    */}
+      
       
     </Tabs>
 </div>

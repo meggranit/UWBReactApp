@@ -5,6 +5,7 @@ import { getAllRoomThree } from '../actions/roomThreeActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
+import Pusher from 'pusher-js'
 
 function RoomThreeLogs() {
 
@@ -13,6 +14,16 @@ function RoomThreeLogs() {
     const { error, loading, roomthree } = roomthreestate
     useEffect(() => {
         dispatch(getAllRoomThree())
+        const pusher = new Pusher('df84289eebfca65c0b86', {
+          cluster: 'us2'
+        });
+        const channel3 = pusher.subscribe('channel_room3');
+        channel3.bind('event-room3', function(data) {
+          alert(JSON.stringify(data));
+        });
+        return (() => {
+          pusher.unsubscribe('channel_room3')
+        })
     }, [])
 
   return (

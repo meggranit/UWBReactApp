@@ -9,6 +9,7 @@ import { getAllRoomFive } from '../actions/roomFiveActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
+import Pusher from 'pusher-js'
 
 function RoomCount() {
 
@@ -30,6 +31,26 @@ function RoomCount() {
         dispatch(getAllRoomThree())
         dispatch(getAllRoomFour())
         dispatch(getAllRoomFive())
+        const pusher = new Pusher('df84289eebfca65c0b86', {
+            cluster: 'us2'
+          });
+          const channel1 = pusher.subscribe('channel_room1');
+          channel1.bind('event-room1', function(data) {
+            alert(JSON.stringify(data));
+          });
+          const channel2 = pusher.subscribe('channel_room2');
+          channel2.bind('event-room2', function(data) {
+            alert(JSON.stringify(data));
+          });
+          const channel3 = pusher.subscribe('channel_room3');
+          channel3.bind('event-room3', function(data) {
+            alert(JSON.stringify(data));
+          });
+          return (() => {
+            pusher.unsubscribe('channel_room1')
+            pusher.unsubscribe('channel_room2')
+            pusher.unsubscribe('channel_room3')
+          })
     }, [])
 
   return (
@@ -59,6 +80,9 @@ function RoomCount() {
                     </div>
                 </div>
             </div>
+            {/*
+
+            
             <div className="rooms-row rooms-bottom-row">
                 <div className="room room-bottom">
                 <div className="room-content">
@@ -73,6 +97,7 @@ function RoomCount() {
                     </div>
                 </div>
             </div>
+*/}
         </div>
        </div>
        
