@@ -9,6 +9,8 @@ import { getAllRoomTwoReducer } from '../reducers/roomTwoReducer'
 import { getAllRoomThreeReducer } from '../reducers/roomThreeReducer'
 import { getAllRoomFourReducer } from '../reducers/roomFourReducer'
 import { getAllRoomFiveReducer } from '../reducers/roomFiveReducer'
+import { getAllSensorsReducer } from '../reducers/sensorsReducer'
+import { configurePusher } from 'pusher-redux';
 
 const finalReducer = combineReducers({
     getAllPhonesReducer: getAllPhonesReducer,
@@ -16,7 +18,8 @@ const finalReducer = combineReducers({
     getAllRoomTwoReducer: getAllRoomTwoReducer,
     getAllRoomThreeReducer: getAllRoomThreeReducer,
     getAllRoomFourReducer: getAllRoomFourReducer, 
-    getAllRoomFiveReducer: getAllRoomFiveReducer
+    getAllRoomFiveReducer: getAllRoomFiveReducer,
+    getAllSensorsReducer: getAllSensorsReducer
 })
 
 const initialState = {
@@ -26,5 +29,7 @@ const initialState = {
 const composeEnhancers = composeWithDevTools({})
 
 const store = legacy_createStore(finalReducer, initialState, composeEnhancers(applyMiddleware(thunk)))
+
+configurePusher(store , "df84289eebfca65c0b86");
 
 export default store

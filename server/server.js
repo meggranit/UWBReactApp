@@ -21,6 +21,7 @@ app.use('/api/roomtwo', require('./routes/roomTwoRoutes'))
 app.use('/api/roomthree', require('./routes/roomThreeRoutes'))
 app.use('/api/roomfour', require('./routes/roomFourRoutes'))
 app.use('/api/roomfive', require('./routes/roomFiveRoutes'))
+app.use('/api/sensors', require('./routes/sensorRoutes'))
 
 app.use(errorHandler)
 

@@ -8,6 +8,7 @@ import RoomThreeLogs from '../components/RoomThreeLogs';
 import RoomFourLogs from '../components/RoomFourLogs';
 import RoomFiveLogs from '../components/RoomFiveLogs';
 import PhoneLogs from '../components/PhoneLogs';
+import SensorLogs from '../components/SensorLogs';
 
 
 
@@ -56,8 +57,15 @@ function Logs() {
                 <RoomFiveLogs />
             </div>
       </Tab>
+      */
 
-    */}
+      <Tab eventKey="sensors" title="Sensors">
+      <div className='logs-spacing'>
+                <SensorLogs />
+            </div>
+      </Tab>
+
+    }
       
       
     </Tabs>
