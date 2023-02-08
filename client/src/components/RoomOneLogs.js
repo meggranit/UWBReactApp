@@ -6,6 +6,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
 import Pusher from 'pusher-js'
+import { subscribe, unsubscribe } from 'pusher-redux';
+
 
 function RoomOneLogs() {
 
@@ -18,8 +20,8 @@ function RoomOneLogs() {
           cluster: 'us2'
         });
         const channel1 = pusher.subscribe('channel_room1');
-        channel1.bind('event-room1', function(data) {
-          alert(JSON.stringify(data));
+        channel1.bind('event_room1', function(data) {
+          dispatch(getAllRoomOne());
         });
         return (() => {
           pusher.unsubscribe('channel_room1')
