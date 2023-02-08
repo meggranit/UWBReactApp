@@ -19,7 +19,8 @@ function RoomTwoLogs() {
         });
         const channel2 = pusher.subscribe('channel_room2');
         channel2.bind('event-room2', function(data) {
-          alert(JSON.stringify(data));
+          dispatch(getAllRoomTwo());
+          //alert(JSON.stringify(data));
         });
         return (() => {
           pusher.unsubscribe('channel_room2')

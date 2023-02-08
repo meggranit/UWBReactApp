@@ -35,16 +35,19 @@ function RoomCount() {
             cluster: 'us2'
           });
           const channel1 = pusher.subscribe('channel_room1');
-          channel1.bind('event-room1', function(data) {
-            alert(JSON.stringify(data));
+          channel1.bind('event_room1', function(data) {
+            dispatch(getAllRoomOne());
+            //alert(JSON.stringify(data));
           });
           const channel2 = pusher.subscribe('channel_room2');
-          channel2.bind('event-room2', function(data) {
-            alert(JSON.stringify(data));
+          channel2.bind('event_room2', function(data) {
+            dispatch(getAllRoomTwo());
+            //alert(JSON.stringify(data));
           });
           const channel3 = pusher.subscribe('channel_room3');
-          channel3.bind('event-room3', function(data) {
-            alert(JSON.stringify(data));
+          channel3.bind('event_room3', function(data) {
+            dispatch(getAllRoomThree());
+            //alert(JSON.stringify(data));
           });
           return (() => {
             pusher.unsubscribe('channel_room1')

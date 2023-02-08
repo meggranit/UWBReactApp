@@ -18,8 +18,9 @@ function RoomThreeLogs() {
           cluster: 'us2'
         });
         const channel3 = pusher.subscribe('channel_room3');
-        channel3.bind('event-room3', function(data) {
-          alert(JSON.stringify(data));
+        channel3.bind('event_room3', function(data) {
+          dispatch(getAllRoomThree());
+          //alert(JSON.stringify(data));
         });
         return (() => {
           pusher.unsubscribe('channel_room3')
