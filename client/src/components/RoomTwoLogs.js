@@ -18,7 +18,7 @@ function RoomTwoLogs() {
           cluster: 'us2'
         });
         const channel2 = pusher.subscribe('channel_room2');
-        channel2.bind('event-room2', function(data) {
+        channel2.bind('event_room2', function(data) {
           dispatch(getAllRoomTwo());
           //alert(JSON.stringify(data));
         });
