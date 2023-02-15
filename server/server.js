@@ -15,6 +15,7 @@ app.use(function(req, res, next) {
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use('/api/roomreports', require('./routes/roomRoutes'))
 app.use('/api/phones', require('./routes/phoneRoutes'))
 app.use('/api/roomone', require('./routes/roomOneRoutes'))
 app.use('/api/roomtwo', require('./routes/roomTwoRoutes'))
