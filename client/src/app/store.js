@@ -10,6 +10,7 @@ import { getAllRoomThreeReducer } from '../reducers/roomThreeReducer'
 import { getAllRoomFourReducer } from '../reducers/roomFourReducer'
 import { getAllRoomFiveReducer } from '../reducers/roomFiveReducer'
 import { getAllSensorsReducer } from '../reducers/sensorsReducer'
+import { getAllRoomsReducer } from '../reducers/roomsReducer'
 import { configurePusher } from 'pusher-redux';
 
 const finalReducer = combineReducers({
@@ -19,7 +20,8 @@ const finalReducer = combineReducers({
     getAllRoomThreeReducer: getAllRoomThreeReducer,
     getAllRoomFourReducer: getAllRoomFourReducer, 
     getAllRoomFiveReducer: getAllRoomFiveReducer,
-    getAllSensorsReducer: getAllSensorsReducer
+    getAllSensorsReducer: getAllSensorsReducer,
+    getAllRoomsReducer: getAllRoomsReducer
 })
 
 const initialState = {
