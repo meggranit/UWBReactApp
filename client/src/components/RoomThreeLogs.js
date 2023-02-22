@@ -17,13 +17,13 @@ function RoomThreeLogs() {
         const pusher = new Pusher('df84289eebfca65c0b86', {
           cluster: 'us2'
         });
-        const channel3 = pusher.subscribe('channel_room3');
-        channel3.bind('event_room3', function(data) {
+        const channel1 = pusher.subscribe('channel_room1');
+        channel1.bind('event_room1', function(data) {
           dispatch(getAllRoomThree());
           //alert(JSON.stringify(data));
         });
         return (() => {
-          pusher.unsubscribe('channel_room3')
+          pusher.unsubscribe('channel_room1')
         })
     }, [])
 
