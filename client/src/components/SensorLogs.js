@@ -31,9 +31,11 @@ function SensorLogs() {
           >
             <div className="ms-2 me-auto">
               <p>Sensor ID: {sensor.sensorID}</p>
+              <p>Room ID: {sensor.roomID}</p>
             </div>
             <div>
-                <p>Room ID: {sensor.roomID}</p>
+                <p>Latitude: {sensor.latitude}</p>
+                <p>Longitude: {sensor.longitude}</p>
             </div>
           </ListGroup.Item>
         })}

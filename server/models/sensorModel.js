@@ -9,8 +9,19 @@ const sensorSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    latitude: {
+        type: String,
+        required: true
+    },
+    longitude: {
+        type: String,
+        required: true
+    }
 
 });
 
 const sensorModel = mongoose.model('Sensor', sensorSchema);
 module.exports = sensorModel
+
+
+
