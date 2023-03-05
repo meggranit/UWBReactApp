@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/meggranit/UWBReactApp/issues"
   },
-  "homepage": "https://github.com/meggranit/UWBReactApp#readme"
+  "homepage": "https://github.com/meggranit/UWBReactApp#readme",
+  "dependencies": {
+    "pigeon-maps": "^0.21.3"
+  }
 }
