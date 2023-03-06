@@ -133,6 +133,18 @@ p{
 .home-layout{
   margin-top: 80px;
 }
+.map{
+ padding: 40px;
+}
+.annotation {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  color: #fff;
+  text-align: center;
+  background: #69B3E7;
+}
 @media only screen and (max-width: 600px) {
   .room-bottom{
     width: 180px;
