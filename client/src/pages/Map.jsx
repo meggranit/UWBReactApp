@@ -9,6 +9,8 @@ import { getAllRoomFour } from '../actions/roomFourActions';
 import { getAllRoomFive } from '../actions/roomFiveActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Pusher from 'pusher-js'
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 
 export default function Home() {
@@ -34,6 +36,9 @@ export default function Home() {
     const roomfivestate = useSelector(state=>state.getAllRoomFiveReducer)
     const {  roomfive } = roomfivestate
     const { error, loading, sensors } = sensorstate
+    const [open, setOpen] = useState(false);
+    const closeModal = () => setOpen(false);
+
     useEffect(() => {
         dispatch(getAllSensors())
         dispatch(getAllRoomOne())
@@ -59,8 +64,9 @@ export default function Home() {
     }, [])
 
 
+   
     return (
-      
+      <div>
  <div className="map">
     <Map 
       height={500}
@@ -90,8 +96,10 @@ index++
     
         })}
     </Map>
+    
 </div>
 
+
+  </div>
     )
 }
-

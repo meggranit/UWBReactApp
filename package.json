@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/meggranit/UWBReactApp#readme",
   "dependencies": {
-    "pigeon-maps": "^0.21.3"
+    "pigeon-maps": "^0.21.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "reactjs-popup": "^2.0.5"
   }
 }
