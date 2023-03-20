@@ -10,11 +10,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
 import Pusher from 'pusher-js'
+import { getAllRooms, getRoomByID } from '../actions/roomActions';
+import { getAllSensors } from '../actions/sensorActions';
 
 function RoomCount() {
 
   const dispatch = useDispatch()
- 
+
+    const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
+    const { sensors } = sensorstate
+    const roomstate = useSelector(state=>state.getRoomByIDReducer)
+    const room = roomstate
     const roomonestate = useSelector(state=>state.getAllRoomOneReducer)
     const { error, loading, roomone } = roomonestate
     const roomtwostate = useSelector(state=>state.getAllRoomTwoReducer)
@@ -25,12 +31,21 @@ function RoomCount() {
     const {  roomfour } = roomfourstate
     const roomfivestate = useSelector(state=>state.getAllRoomFiveReducer)
     const {  roomfive } = roomfivestate
+    var index = 1;
+    var count = 0;
     useEffect(() => {
         dispatch(getAllRoomOne())
         dispatch(getAllRoomTwo())
         dispatch(getAllRoomThree())
         dispatch(getAllRoomFour())
         dispatch(getAllRoomFive())
+        dispatch(getAllRooms())
+        dispatch(getAllSensors())
+        {sensors && sensors.map(sensor => {
+          dispatch(getRoomByID(sensor.roomID))
+        })
+         
+        }
         const pusher = new Pusher('df84289eebfca65c0b86', {
             cluster: 'us2'
           });
@@ -56,24 +71,28 @@ function RoomCount() {
        <div className="align-rooms">
        <div className="rooms-main-div">
             <div className="rooms-row rooms-top-row">
-                <div className="room room-top">
-                    <div className="room-content">
-                        <p className="room-num">Room One</p>
-                        <h1 className="room-count">{roomone.length}</h1>
-                    </div>
-                </div>
-                <div className="room room-top">
+              {sensors && sensors.map(sensor => {
+
+if(index == 1){
+  count = roomone.length
+  } else if(index ==2 ){
+    count = roomtwo.length
+  } else if(index == 3){
+    count = roomthree.length
+  } else {
+    count = 0
+  }
+  index++
+
+                return <div className="room room-top">
                 <div className="room-content">
-                        <p className="room-num">Room Two</p>
-                        <h1 className="room-count">{roomtwo.length}</h1>
-                    </div>
+                    <p className="room-num">Room {sensor.roomID}</p>
+                    <h1 className="room-count">{count}</h1>
                 </div>
-                <div className="room room-top">
-                <div className="room-content">
-                        <p className="room-num">Room Three</p>
-                        <h1 className="room-count">{roomthree.length}</h1>
-                    </div>
-                </div>
+            </div>
+
+              }) }
+              
             </div>
             {/*
 

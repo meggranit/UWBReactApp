@@ -17,16 +17,18 @@ export const getAllRooms=()=>async dispatch=>{
   }
 
 
-export const getRoomByID=(id)=>async dispatch=>{
-    dispatch({type:'GET_ALLROOMS_REQUEST'})
+
+
+export const getRoomByID = (id) =>async (dispatch) => {
     
+    dispatch({type:'GET_ROOMBYID_REQUEST'})
+
     try {
-        const response = await axios.get(`http://localhost:8000/api/roomreports/${id}`)
+        const response = await axios.post('http://localhost:8000/api/roomreports/getroombyid' , {id})
         console.log(response);
-        
-        dispatch({type:'GET_ALLROOMS_SUCCESS' , payload : response.data})
+        dispatch({type:'GET_ROOMBYID_SUCCESS' , payload : response.data})
     } catch (error) {
-        
-        dispatch({type:'GET_ALLROOMS_FAILED' , payload : error})
+        dispatch({type:'GET_ROOMBYID_FAILED' , payload : error})
     }
+   
 }
