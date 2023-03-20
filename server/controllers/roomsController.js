@@ -26,11 +26,17 @@ const getRoomThreeReports = asyncHandler(async (req, res) => {
 
     res.status(200).json(roomthree)
 })
+const getRoomFourReports = asyncHandler(async (req, res) => {
+    const roomfour = await RoomReports.find({"roomID": "4"})
+
+    res.status(200).json(roomfour)
+})
 
 
 module.exports = {
     getRoomReports,
     getRoomOneReports,
     getRoomTwoReports,
-    getRoomThreeReports
+    getRoomThreeReports,
+    getRoomFourReports
 }

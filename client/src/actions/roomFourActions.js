@@ -5,7 +5,7 @@ export const getAllRoomFour=()=>async dispatch=>{
     dispatch({type:'GET_ALLROOMFOUR_REQUEST'})
     
     try {
-        const response = await axios.get('http://localhost:8000/api/roomfour')
+        const response = await axios.get('http://localhost:8000/api/roomreports/roomfour')
         console.log(response);
         
         dispatch({type:'GET_ALLROOMFOUR_SUCCESS' , payload : response.data})
