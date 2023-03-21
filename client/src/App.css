@@ -68,33 +68,19 @@
 text{
   fill: transparent !important;
 }
-/*
-//plotly grid lines
-path{
-  stroke: transparent !important;
-}
-*/
-
-
 .rooms-main-div{
-  display: flex;
-  flex-direction: column;
   width: fit-content;
-  border: solid #C8C9C7;
+ 
 }
 .rooms-row{
   display:flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .align-rooms{
   display: flex;
   justify-content: center;
-}
-.rooms-top-row{
-
-}
-.rooms-bottom-row{
-
 }
 .room{
   height: 150px;
