@@ -20,7 +20,7 @@ app.get('/about', (req, res) => {
   res.send('This is my about route..... ')
 })
 
-app.use('/api/roomreports', require('./routes/roomRoutes'))
+//app.use('/api/roomreports', require('./routes/roomRoutes'))
 
 // Export the Express API
 module.exports = app
