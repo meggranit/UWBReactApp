@@ -41,6 +41,7 @@ function RoomCount() {
         dispatch(getAllRoomFive())
         dispatch(getAllRooms())
         dispatch(getAllSensors())
+        dispatch(getRoomByID('2'))
         {sensors && sensors.map(sensor => {
           dispatch(getRoomByID(sensor.roomID))
         })

@@ -19,12 +19,12 @@ export const getAllRooms=()=>async dispatch=>{
 
 
 
-export const getRoomByID = (id) =>async (dispatch) => {
+export const getRoomByID = (roomID) =>async (dispatch) => {
     
     dispatch({type:'GET_ROOMBYID_REQUEST'})
 
     try {
-        const response = await axios.post('http://localhost:8000/api/roomreports/getroombyid' , {id})
+        const response = await axios.post('http://localhost:8000/api/roomreports/getroombyid' , {roomID})
         console.log(response);
         dispatch({type:'GET_ROOMBYID_SUCCESS' , payload : response.data})
     } catch (error) {
