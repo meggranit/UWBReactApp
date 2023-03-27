@@ -31,8 +31,19 @@ function RoomCount() {
     const {  roomfour } = roomfourstate
     const roomfivestate = useSelector(state=>state.getAllRoomFiveReducer)
     const {  roomfive } = roomfivestate
+    const numSensors = sensors.length
+    var roomData
+    console.log(numSensors)
     var index = 1;
     var count = 0;
+
+    //create associative array, for each sensor create key that is same as roomID
+    //call getRoomByID() with roomID from sensor
+    //fill associative array with rooms under respective roomID
+    //ex: {"1": {all room1 data} , "2": {all room2 data}}
+  
+
+
     useEffect(() => {
         dispatch(getAllRoomOne())
         dispatch(getAllRoomTwo())
@@ -41,6 +52,7 @@ function RoomCount() {
         dispatch(getAllRoomFive())
         dispatch(getAllRooms())
         dispatch(getAllSensors())
+        const numSensors = sensors.length
         dispatch(getRoomByID('2'))
         {sensors && sensors.map(sensor => {
           dispatch(getRoomByID(sensor.roomID))
@@ -89,6 +101,8 @@ if(index == 1){
                 <div className="room-content">
                     <p className="room-num">Room {sensor.roomID}</p>
                     <h1 className="room-count">{count}</h1>
+                    { getRoomByID(sensor.roomID)}
+                    <p>{  roomData }</p>
                 </div>
             </div>
 
