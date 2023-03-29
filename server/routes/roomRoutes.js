@@ -18,6 +18,25 @@ router.post("/getroombyid", async(req, res) => {
         return res.status(400).json({ message: error });
     }
    });
+
+router.post("/newreport", async(req, res) => {
+    const tagID = req.body.tagID
+    const buildingID = req.body.buildingID
+    const roomID = req.body.roomID
+    const lat = req.body.lat
+    const long = req.body.long
+    const time = req.body.time
+    const distance = req.body.distance
+    const deviceID = req.body.deviceID
+    try {
+        const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID })
+        res.send(roomData)
+        console.log(roomData)
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+   });
+
   
 router.get('/roomone', getRoomOneReports )
 router.get('/roomtwo', getRoomTwoReports )
