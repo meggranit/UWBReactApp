@@ -29,7 +29,8 @@ router.post("/newreport", async(req, res) => {
     const distance = req.body.distance
     const deviceID = req.body.deviceID
     try {
-        const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID })
+        //updateOne(data , update , options)
+        const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID } )
         res.send(roomData)
         console.log(roomData)
     } catch (error) {

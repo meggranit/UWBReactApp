@@ -5,7 +5,7 @@ export const getAllPhones=()=>async dispatch=>{
     dispatch({type:'GET_ALLPHONES_REQUEST'})
     
     try {
-        const response = await axios.get('http://localhost:8000/api/phones')
+        const response = await axios.get('https://uwb-react-app-weuz.vercel.app/api/phones')
         console.log(response);
         
         dispatch({type:'GET_ALLPHONES_SUCCESS' , payload : response.data})
