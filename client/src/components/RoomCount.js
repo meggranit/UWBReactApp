@@ -20,17 +20,8 @@ function RoomCount() {
     const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
     const { sensors } = sensorstate
     const roomstate = useSelector(state=>state.getRoomByIDReducer)
-    const room = roomstate
-    const roomonestate = useSelector(state=>state.getAllRoomOneReducer)
-    const { error, loading, roomone } = roomonestate
-    const roomtwostate = useSelector(state=>state.getAllRoomTwoReducer)
-    const { roomtwo } = roomtwostate
-    const roomthreestate = useSelector(state=>state.getAllRoomThreeReducer)
-    const { roomthree } = roomthreestate
-    const roomfourstate = useSelector(state=>state.getAllRoomFourReducer)
-    const {  roomfour } = roomfourstate
-    const roomfivestate = useSelector(state=>state.getAllRoomFiveReducer)
-    const {  roomfive } = roomfivestate
+    const { error , room } = roomstate
+    
     const numSensors = sensors.length
     var roomData
     //console.log(numSensors)
@@ -46,11 +37,6 @@ function RoomCount() {
 
     useEffect(() => {
       dispatch(getAllSensors())
-        dispatch(getAllRoomOne())
-        dispatch(getAllRoomTwo())
-        dispatch(getAllRoomThree())
-        dispatch(getAllRoomFour())
-        dispatch(getAllRoomFive())
         dispatch(getAllRooms())
         
         
@@ -61,10 +47,8 @@ function RoomCount() {
           });
           const channel1 = pusher.subscribe('channel_room1');
           channel1.bind('event_room1', function(data) {
-            dispatch(getAllRoomOne());
-            dispatch(getAllRoomTwo());
-            dispatch(getAllRoomThree());
-            //alert(JSON.stringify(data));
+            dispatch(getAllRooms());
+           
           });
           
           return (() => {
@@ -84,16 +68,7 @@ function RoomCount() {
               {sensors && sensors.map(sensor => {
 const roomInfo = getRoomByID(sensor.roomID)
 
-if(index == 1){
-  count = roomone.length
-  } else if(index ==2 ){
-    count = roomtwo.length
-  } else if(index == 3){
-    count = roomthree.length
-  } else {
-    count = 0
-  }
-  index++
+
 
                 return <div className="room room-top">
                 <div className="room-content">
