@@ -33,7 +33,7 @@ function RoomCount() {
     const {  roomfive } = roomfivestate
     const numSensors = sensors.length
     var roomData
-    console.log(numSensors)
+    //console.log(numSensors)
     var index = 1;
     var count = 0;
 
@@ -45,20 +45,17 @@ function RoomCount() {
 
 
     useEffect(() => {
+      dispatch(getAllSensors())
         dispatch(getAllRoomOne())
         dispatch(getAllRoomTwo())
         dispatch(getAllRoomThree())
         dispatch(getAllRoomFour())
         dispatch(getAllRoomFive())
         dispatch(getAllRooms())
-        dispatch(getAllSensors())
-        const numSensors = sensors.length
+        
+        
         dispatch(getRoomByID('2'))
-        {sensors && sensors.map(sensor => {
-          dispatch(getRoomByID(sensor.roomID))
-        })
-         
-        }
+        
         const pusher = new Pusher('df84289eebfca65c0b86', {
             cluster: 'us2'
           });
@@ -85,6 +82,7 @@ function RoomCount() {
        <div className="rooms-main-div">
             <div className="rooms-row rooms-top-row">
               {sensors && sensors.map(sensor => {
+const roomInfo = getRoomByID(sensor.roomID)
 
 if(index == 1){
   count = roomone.length
@@ -109,24 +107,7 @@ if(index == 1){
               }) }
               
             </div>
-            {/*
-
-            
-            <div className="rooms-row rooms-bottom-row">
-                <div className="room room-bottom">
-                <div className="room-content">
-                        <p className="room-num">Room Four</p>
-                        <h1 className="room-count">{roomfour.length}</h1>
-                    </div>
-                </div>
-                <div className="room room-bottom">
-                <div className="room-content">
-                        <p className="room-num">Room Five</p>
-                        <h1 className="room-count">{roomfive.length}</h1>
-                    </div>
-                </div>
-            </div>
-*/}
+            {}
         </div>
        </div>
        

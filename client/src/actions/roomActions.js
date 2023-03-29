@@ -25,7 +25,7 @@ export const getRoomByID = (roomID) =>async (dispatch) => {
 
     try {
         const response = await axios.post('http://localhost:8000/api/roomreports/getroombyid' , {roomID})
-        console.log(response);
+        //console.log(response);
         dispatch({type:'GET_ROOMBYID_SUCCESS' , payload : response.data})
     } catch (error) {
         dispatch({type:'GET_ROOMBYID_FAILED' , payload : error})
