@@ -20,7 +20,7 @@ function RoomCount() {
     const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
     const { sensors } = sensorstate
     const roomstate = useSelector(state=>state.getRoomByIDReducer)
-    const { error , room } = roomstate
+    const { error , loading , room } = roomstate
     
     const numSensors = sensors.length
     var roomData
