@@ -11,6 +11,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Pusher from 'pusher-js'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { getAllRooms } from "../actions/roomActions";
 
 
 export default function Home() {
@@ -25,35 +26,22 @@ export default function Home() {
     var count = 0
     const dispatch = useDispatch()
     const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
-    const roomonestate = useSelector(state=>state.getAllRoomOneReducer)
-    const { roomone } = roomonestate
-    const roomtwostate = useSelector(state=>state.getAllRoomTwoReducer)
-    const { roomtwo } = roomtwostate
-    const roomthreestate = useSelector(state=>state.getAllRoomThreeReducer)
-    const { roomthree } = roomthreestate
-    const roomfourstate = useSelector(state=>state.getAllRoomFourReducer)
-    const {  roomfour } = roomfourstate
-    const roomfivestate = useSelector(state=>state.getAllRoomFiveReducer)
-    const {  roomfive } = roomfivestate
+    
     const { error, loading, sensors } = sensorstate
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
 
     useEffect(() => {
         dispatch(getAllSensors())
-        dispatch(getAllRoomOne())
-        dispatch(getAllRoomTwo())
-        dispatch(getAllRoomThree())
-        dispatch(getAllRoomFour())
-        dispatch(getAllRoomFive())
+        dispatch(getAllRooms())
+      
         const pusher = new Pusher('df84289eebfca65c0b86', {
             cluster: 'us2'
           });
           const channel1 = pusher.subscribe('channel_room1');
           channel1.bind('event_room1', function(data) {
-            dispatch(getAllRoomOne());
-            dispatch(getAllRoomTwo());
-            dispatch(getAllRoomThree());
+            dispatch(getAllRooms());
+           
             //alert(JSON.stringify(data));
           });
           
@@ -80,16 +68,8 @@ export default function Home() {
       <ZoomControl />
       {sensors && sensors.map(sensor=> {
        
-if(index == 1){
-count = roomone.length
-} else if(index ==2 ){
-  count = roomtwo.length
-} else if(index == 3){
-  count = roomthree.length
-} else {
-  count = 0
-}
-index++
+
+
           return <Overlay anchor={[parseFloat(sensor.latitude), parseFloat(sensor.longitude)]} >
             <p className="annotation">{count}</p>
           </Overlay>
