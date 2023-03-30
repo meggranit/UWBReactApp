@@ -9,6 +9,7 @@ import { getAllRoomFive } from '../actions/roomFiveActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
+import SingleRoom from './SingleRoom';
 import Pusher from 'pusher-js'
 import { getAllRooms, getRoomByID } from '../actions/roomActions';
 import { getAllSensors } from '../actions/sensorActions';
@@ -19,14 +20,24 @@ function RoomCount() {
 
     const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
     const { sensors } = sensorstate
-    const roomstate = useSelector(state=>state.getRoomByIDReducer)
-    const { error , loading , room } = roomstate
+    const allroomsstate =  useSelector(state=>state.getAllRoomsReducer)
+    const {error , loading , allrooms } = allroomsstate
+    //const roomstate = useSelector(state=>state.getRoomByIDReducer)
+   // const {  room } = roomstate
     
     const numSensors = sensors.length
-    var roomData
+    /*
+    var roomData1 = []
+    var roomData2 = []
+    for (let index = 0; index < numSensors; index++) {
+      roomData1[index] = room
+      
+    }
+    */
     //console.log(numSensors)
     var index = 1;
     var count = 0;
+    
 
     //create associative array, for each sensor create key that is same as roomID
     //call getRoomByID() with roomID from sensor
@@ -36,11 +47,11 @@ function RoomCount() {
 
 
     useEffect(() => {
-      dispatch(getAllSensors())
+        dispatch(getAllSensors())
         dispatch(getAllRooms())
         
-        
-        dispatch(getRoomByID('2'))
+        //dispatch(getRoomByID('1'))
+        //const room2 = dispatch(getRoomByID('2'))
         
         const pusher = new Pusher('df84289eebfca65c0b86', {
             cluster: 'us2'
@@ -62,11 +73,15 @@ function RoomCount() {
         {loading && <Loading />}
         {error && <Error error="Something went wrong" />}
        <p></p>
+       
        <div className="align-rooms">
        <div className="rooms-main-div">
+       
+       
             <div className="rooms-row rooms-top-row">
               {sensors && sensors.map(sensor => {
-const roomInfo = getRoomByID(sensor.roomID)
+
+//const count = getRoomByID(sensor.roomID)
 
 
 
@@ -74,15 +89,14 @@ const roomInfo = getRoomByID(sensor.roomID)
                 <div className="room-content">
                     <p className="room-num">Room {sensor.roomID}</p>
                     <h1 className="room-count">{count}</h1>
-                    { getRoomByID(sensor.roomID)}
-                    <p>{  roomData }</p>
+                   
                 </div>
             </div>
 
               }) }
               
             </div>
-            {}
+            
         </div>
        </div>
        
