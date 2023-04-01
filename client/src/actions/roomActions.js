@@ -26,7 +26,7 @@ export const getRoomByID = (roomID) =>async (dispatch) => {
     try {
         const response = await axios.post('https://uwb-react-app-weuz.vercel.app/api/roomreports/getroombyid' , {roomID})
         //console.log(response);
-        dispatch({type:'GET_ROOMBYID_SUCCESS' , payload : response.data})
+        dispatch({type:'GET_ROOMBYID_SUCCESS' , payload : response.data.roomID})
     } catch (error) {
         dispatch({type:'GET_ROOMBYID_FAILED' , payload : error})
     }
