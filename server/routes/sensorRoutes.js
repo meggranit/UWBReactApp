@@ -9,7 +9,7 @@ router.post("/getroomid", async(req, res) => {
 
     const sensorID = req.body.sensorID
     try {
-        const sensorData = await sesnorModel.find({ 'sensorID': sensorID });
+        const sensorData = await sensorModel.find({ 'sensorID': sensorID });
         res.send(sensorData)
         console.log(sensorData)
     } catch (error) {
