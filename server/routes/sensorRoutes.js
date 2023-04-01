@@ -7,7 +7,7 @@ router.get('/', getSensors)
 
 router.post("/getroomid", async(req, res) => {
 
-    const sesnorID = req.body.sensorID
+    const sensorID = req.body.sensorID
     try {
         const sensorData = await sesnorModel.find({ 'sensorID': sensorID });
         res.send(sensorData)
