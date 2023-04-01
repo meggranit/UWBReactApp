@@ -5,11 +5,11 @@ const sensorModel = require("../models/sensorModel");
 
 router.get('/', getSensors)
 
-router.post("/getroomid", async(req, res) => {
+router.post("/getbyid", async(req, res) => {
 
     const sensorID = req.body.sensorID
     try {
-        const sensorData = await sensorModel.find({ 'sensorID': sensorID }).select('roomID');
+        const sensorData = await sensorModel.find({ 'sensorID': sensorID });
         res.send(sensorData)
         console.log(sensorData)
     } catch (error) {
