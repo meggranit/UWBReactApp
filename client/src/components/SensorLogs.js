@@ -32,6 +32,7 @@ function SensorLogs() {
             <div className="ms-2 me-auto">
               <p>Sensor ID: {sensor.sensorID}</p>
               <p>Room ID: {sensor.roomID}</p>
+              <p>Building ID: {sensor.buildingID}</p>
             </div>
             <div>
                 <p>Latitude: {sensor.latitude}</p>

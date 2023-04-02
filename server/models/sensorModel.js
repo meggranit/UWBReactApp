@@ -16,6 +16,10 @@ const sensorSchema = mongoose.Schema({
     longitude: {
         type: String,
         required: true
+    },
+    buildingID: {
+        type: String,
+        required: true
     }
 
 });
