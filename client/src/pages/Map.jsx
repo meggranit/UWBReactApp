@@ -76,7 +76,7 @@ export default function Home() {
       {sensors && sensors.map(sensor=> {
        
           return <Overlay anchor={[parseFloat(sensor.latitude), parseFloat(sensor.longitude)]} >
-          <p className="annotation">{roomCount(sensor.roomID)}</p>
+          <MapAnnotation roomID = {sensor.roomID} />
         </Overlay>
           
     
