@@ -12,6 +12,8 @@ import Pusher from 'pusher-js'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { getAllRooms } from "../actions/roomActions";
+import MapAnnotation from '../components/MapAnnotation';
+import { getRoomByID } from "../actions/roomActions";
 
 
 export default function Home() {
@@ -28,8 +30,13 @@ export default function Home() {
     const sensorstate =  useSelector(state=>state.getAllSensorsReducer)
     
     const { error, loading, sensors } = sensorstate
+
+    const roomstate = useSelector(state=>state.getAllRoomsReducer)
+    const rooms = roomstate
     const [open, setOpen] = useState(false);
     const closeModal = () => setOpen(false);
+
+
 
     useEffect(() => {
         dispatch(getAllSensors())
@@ -68,11 +75,10 @@ export default function Home() {
       <ZoomControl />
       {sensors && sensors.map(sensor=> {
        
-
-
           return <Overlay anchor={[parseFloat(sensor.latitude), parseFloat(sensor.longitude)]} >
-            <p className="annotation">{count}</p>
-          </Overlay>
+          <p className="annotation">{roomCount(sensor.roomID)}</p>
+        </Overlay>
+          
     
         })}
     </Map>
@@ -82,4 +88,14 @@ export default function Home() {
 
   </div>
     )
+}
+
+function roomCount(roomID ) {
+
+ 
+
+ 
+  
+  
+  return roomID
 }
