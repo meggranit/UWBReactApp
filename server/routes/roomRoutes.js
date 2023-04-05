@@ -26,22 +26,16 @@ router.post("/newreport", async(req, res) => {
     const distance = req.body.distance
     const deviceID = req.body.deviceID
 
-    const lat = ""
-    const long = ""
-    const buildingID = ""
+   
     
-    try {
-        const sensorData = await sensorModel.find({ 'roomID': roomID });
-        res.send(sensorData)
-        long = res.body.longitude
-        lat = res.body.latitude
-        buildingID = res.body.buildingID
-        console.log(sensorData)
-    } catch (error) {
-        return res.status(400).json({ message: error });
-    }
    
     try {
+        const sensorData = await sensorModel.find({ 'roomID': roomID });
+        
+        const long = sensorData.longitude
+        const lat = sensorData.latitude
+        const buildingID = sensorData.buildingID
+        console.log(sensorData)
         //updateOne(data , update , options)
         const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID } )
         res.send(roomData)
