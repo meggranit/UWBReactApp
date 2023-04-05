@@ -21,21 +21,15 @@ router.post("/getroombyid", async(req, res) => {
 
 router.post("/newreport", async(req, res) => {
     const tagID = req.body.tagID
+    const buildingID = req.body.buildingID
     const roomID = req.body.roomID
+    const lat = req.body.lat
+    const long = req.body.long
     const time = req.body.time
     const distance = req.body.distance
     const deviceID = req.body.deviceID
-
-   
     
-   
     try {
-        const sensorData = await sensorModel.find({ 'roomID': roomID });
-        
-        const long = sensorData.longitude
-        const lat = sensorData.latitude
-        const buildingID = sensorData.buildingID
-        console.log(sensorData)
         //updateOne(data , update , options)
         const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID } )
         res.send(roomData)
