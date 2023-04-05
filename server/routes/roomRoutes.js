@@ -31,7 +31,7 @@ router.post("/newreport", async(req, res) => {
     
     try {
         //updateOne(data , update , options)
-        const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} )
+        const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
         res.send(roomData)
         console.log(roomData)
     } catch (error) {
