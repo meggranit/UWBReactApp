@@ -21,13 +21,26 @@ router.post("/getroombyid", async(req, res) => {
 
 router.post("/newreport", async(req, res) => {
     const tagID = req.body.tagID
-    const buildingID = req.body.buildingID
     const roomID = req.body.roomID
-    const lat = req.body.lat
-    const long = req.body.long
     const time = req.body.time
     const distance = req.body.distance
     const deviceID = req.body.deviceID
+
+    const lat = ""
+    const long = ""
+    const buildingID = ""
+    
+    try {
+        const sensorData = await sensorModel.find({ 'roomID': roomID });
+        res.send(sensorData)
+        long = res.body.longitude
+        lat = res.body.latitude
+        buildingID = res.body.buildingID
+        console.log(sensorData)
+    } catch (error) {
+        return res.status(400).json({ message: error });
+    }
+   
     try {
         //updateOne(data , update , options)
         const roomData = await roomModel.updateOne({ tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID } )
