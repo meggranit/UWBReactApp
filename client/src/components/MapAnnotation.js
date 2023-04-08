@@ -27,9 +27,12 @@ function MapAnnotation ({ roomID , long , lat })  {
     const count = rooms.length
     var newRooms = []
    
-    {rooms.filter(room => room.roomID.includes(roomID)).map(selectedRoom => (
-                    newRooms.push(selectedRoom.roomID)
-        ))}
+    {rooms && rooms.map(room => {
+      if(room.roomID == roomID){
+        newRooms.push(room.roomID)
+      }
+     })}
+   
 
     
   

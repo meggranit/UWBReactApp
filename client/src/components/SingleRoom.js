@@ -24,10 +24,14 @@ function SingleRoom ({ roomID })  {
    
     const count = rooms.length
     var newRooms = []
+
+    {rooms && rooms.map(room => {
+      if(room.roomID == roomID){
+        newRooms.push(room.roomID)
+      }
+     })}
    
-    {rooms.filter(room => room.roomID.includes(roomID)).map(selectedRoom => (
-                    newRooms.push(selectedRoom.roomID)
-        ))}
+    
 
     
   
