@@ -43,7 +43,7 @@ router.post("/newreport", async(req, res) => {
         const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
         const phoneData = await phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
         pusher.trigger("channel_room1", "event_room1", { message: "post room" });
-        res.send(roomData , phoneData)
+        res.send(roomData)
         console.log(roomData)
         
 
