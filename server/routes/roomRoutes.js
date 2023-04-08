@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { getRoomReports, getRoomOneReports , getRoomTwoReports , getRoomThreeReports , getRoomFourReports } = require('../controllers/roomsController');
 const roomModel = require("../models/roomModel");
+const phoneModel = require("../models/phoneModel");
 var Pusher = require("pusher");
 
 router.get('/', getRoomReports)
@@ -40,8 +41,9 @@ router.post("/newreport", async(req, res) => {
 
         //updateOne(data , update , options)
         const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
+        const phoneData = await phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
         pusher.trigger("channel_room1", "event_room1", { message: "post room" });
-        res.send(roomData)
+        res.send(roomData , phoneData)
         console.log(roomData)
         
 
