@@ -5,7 +5,7 @@ import { getAllPhones } from '../actions/phoneActions';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Loading from './Loading';
 import Error from './Error';
-
+import Pusher from 'pusher-js'
 
 function PhoneLogs() {
 
@@ -14,6 +14,17 @@ function PhoneLogs() {
     const { error, loading, phones } = phonestate
     useEffect(() => {
         dispatch(getAllPhones())
+        const pusher = new Pusher('df84289eebfca65c0b86', {
+          cluster: 'us2'
+        });
+        const channel1 = pusher.subscribe('channel_room1');
+        channel1.bind('event_room1', function(data) {
+          //dispatch(getRoomByID(roomID));
+          dispatch(getAllPhones())
+        });
+        return (() => {
+          pusher.unsubscribe('channel_room1')
+        })
     }, [])
 
   return (
