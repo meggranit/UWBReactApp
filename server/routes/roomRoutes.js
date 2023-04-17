@@ -36,23 +36,60 @@ router.post("/newreport", async(req, res) => {
         secret: "683709999b5a504b9a6a",
         cluster: "us2",
     });
+
+
+    /**
+     * get last record for device ID
+     * 
+     * if deviceID exists {
+     *      if roomID from previous record != new roomID record {
+     *          compare previous distance to new distance
+     *          if prevDistance < newDistance { 
+     *              dont create new record because they are closer to original sensor
+     *          } else {
+     *              create record because they are now in other room and closer to new sensor
+     *          }
+     *      }
+     * }
+     * 
+     */
     
-    try {
 
-        //updateOne(data , update , options)
-        pusher.trigger("channel_room1", "event_room1", { message: "post room" });
-        const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
-        const phoneData = await phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
-        
-        res.send(roomData)
-        console.log(roomData)
-        
-
-    } catch (error) {
-        return res.status(400).json({ message: error });
+    const previousRecord = await roomModel.find({"deviceID": deviceID})
+    var moveRooms = false
+    if(previousRecord.roomID != roomID){
+        moveRooms = true
     }
-   });
+    var furtherFromSensor = false
+    if(previousRecord.distance < distance){
+        furtherFromSensor = true
+    }
 
+    //if they have a previous record, they moved to different room, and they are further from new sensor than previous sensor, dont create record
+    if(previousRecord && moveRooms && furtherFromSensor){
+        console.log("Don't insert into database, sensor from another room is picking up phone")
+    } else {
+
+        try {
+
+            //updateOne(data , update , options)
+            pusher.trigger("channel_room1", "event_room1", { message: "post room" });
+            const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
+            const phoneData = await phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
+            
+            res.send(roomData)
+            console.log(roomData)
+            
+    
+        } catch (error) {
+            return res.status(400).json({ message: error });
+        }
+    }
+   
+
+    
+   });
+    
   
 router.get('/roomone', getRoomOneReports )
 router.get('/roomtwo', getRoomTwoReports )
