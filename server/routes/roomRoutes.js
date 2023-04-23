@@ -57,46 +57,44 @@ router.post("/newreport", async(req, res) => {
 
     var moveRooms = false
     var furtherFromSensor = false
-    const previousRecord = await roomModel.find({"deviceID": deviceID}).then(room => {
-        if(room.roomID != roomID){
-            moveRooms = true
-        } else {
-            moveRooms = false
-        }
-        if(room.distance < distance){
-            furtherFromSensor = true
-        } else {
-            furtherFromSensor = false
-        }
+    const previousRecord = await roomModel.find({"deviceID": deviceID})
 
-        if(moveRooms && furtherFromSensor){
-            console.log("Don't insert into database, sensor from another room is picking up phone")
-        } else {
+    if(previousRecord.roomID != roomID){
+         moveRooms = true
+     } else {
+        moveRooms = false
+     }
+     if(previousRecord.distance < distance){
+         furtherFromSensor = true
+     } else {
+         furtherFromSensor = false
+     }
     
-            try {
-    
-                //updateOne(data , update , options)
-                pusher.trigger("channel_room1", "event_room1", { message: "post room" });
-                const roomData = roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
-                const phoneData = phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
-                
-                res.send(roomData)
-                console.log(roomData)
-                console.log("PREVIOUS RECORD " + previousRecord)
-               
-                
-                
-        
-            } catch (error) {
-                return res.status(400).json({ message: error });
-            }
-        }
-       
-
-    })
 
 
     //if they have a previous record, they moved to different room, and they are further from new sensor than previous sensor, dont create record
+    if(moveRooms && furtherFromSensor){
+        console.log("Don't insert into database, sensor from another room is picking up phone")
+    } else {
+
+        try {
+
+            //updateOne(data , update , options)
+            pusher.trigger("channel_room1", "event_room1", { message: "post room" });
+            const roomData = await roomModel.updateOne( { 'deviceID' : deviceID} , { $set: { tagID: tagID, buildingID: buildingID, roomID: roomID , lat: lat, long : long ,    time : time,  distance: distance,   deviceID: deviceID }} , {upsert : true} )
+            const phoneData = await phoneModel.updateOne( { 'deviceID' : deviceID} , { $set: { deviceID: deviceID , roomID: roomID , distance: distance }} , {upsert : true} )
+            
+            res.send(roomData)
+            console.log(roomData)
+            console.log("PREVIOUS RECORD " + previousRecord)
+           
+            
+            
+    
+        } catch (error) {
+            return res.status(400).json({ message: error });
+        }
+    }
    
 
     
