@@ -55,17 +55,21 @@ router.post("/newreport", async(req, res) => {
      */
     
 
-    const previousRecord = await roomModel.find({"deviceID": deviceID})
     var moveRooms = false
-    if(previousRecord.roomID != roomID){
-        moveRooms = true
-        console.log("Moved Rooms")
-    }
     var furtherFromSensor = false
-    if(previousRecord.distance < distance){
-        furtherFromSensor = true
-        console.log("Further from sensor")
-    }
+    const previousRecord = await roomModel.find({"deviceID": deviceID}).then(room => {
+        if(room.roomID != roomID){
+            moveRooms = true
+        } else {
+            moveRooms = false
+        }
+        if(room.distance < distance){
+            furtherFromSensor = true
+        } else {
+            furtherFromSensor = false
+        }
+    })
+
 
     //if they have a previous record, they moved to different room, and they are further from new sensor than previous sensor, dont create record
     if(moveRooms && furtherFromSensor){
