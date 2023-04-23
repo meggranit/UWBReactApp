@@ -68,7 +68,7 @@ router.post("/newreport", async(req, res) => {
     }
 
     //if they have a previous record, they moved to different room, and they are further from new sensor than previous sensor, dont create record
-    if(moveRooms && furtherFromSensor){
+    if(moveRooms && !furtherFromSensor){
         console.log("Don't insert into database, sensor from another room is picking up phone")
     } else {
 
@@ -81,7 +81,7 @@ router.post("/newreport", async(req, res) => {
             
             res.send(roomData)
             console.log(roomData)
-            console.log("PREVIOS RECORD " + previousRecord)
+            console.log("PREVIOUS RECORD " + previousRecord)
            
             
             
