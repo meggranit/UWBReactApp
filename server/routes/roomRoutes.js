@@ -5,6 +5,9 @@ const roomModel = require("../models/roomModel");
 const phoneModel = require("../models/phoneModel");
 var Pusher = require("pusher");
 
+var moveRooms = false
+var furtherFromSensor = false
+
 router.get('/', getRoomReports)
 
 
@@ -55,8 +58,7 @@ router.post("/newreport", async(req, res) => {
      */
     
 
-    var moveRooms = false
-    var furtherFromSensor = false
+    
     const previousRecords = await roomModel.find({"deviceID": deviceID})
     if (previousRecords.length > 0) {
         const previousRecord = previousRecords[0];
