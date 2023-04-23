@@ -87,7 +87,7 @@ router.post("/newreport", async(req, res) => {
             
             res.send(roomData)
             console.log(roomData)
-            console.log("PREVIOUS RECORD " + previousRecord)
+            console.log("PREVIOUS RECORD " + previousRecords[0])
            
             
             
