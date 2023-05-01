@@ -79,7 +79,7 @@ router.post("/newreport", async(req, res) => {
     if(moveRooms && furtherFromSensor){
         console.log("Don't insert into database, sensor from another room is picking up phone")
         try {
-            res.status(200).json({message: "Don't insert into database, sesnor from another room is picking up phone"})
+            res.status(200).json({message: "Don't insert into database, sensor from another room is picking up phone"})
         } catch (error){
             return res.status(400).json({ message: error });
         }
